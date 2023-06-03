@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: aliceblue;
+            /* overflow: hidden; */
+        }
+
+        .btn{
+            /* border: 3px solid black; */
+            background-color:pink;
+            padding: 20px 40px;
+            box-shadow: 2px 5px 9px black;
+            text-shadow: 2px 5px 9px black;
+            text-decoration: none;
+            color: black;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            
+        }
+
+        .btn::before{
+            content:"";
+            position: absolute;
+            background-color: orangered;
+            width: 0 ;
+            height: 0;
+            left: var(--xPos);
+            top: var(--yPos);
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+            transition: width .5s ,height .5s;
+            
+
+        }
+
+        .btn:hover::before{
+            height: 200px;
+            width: 200px;
+
+        }
+
+        .btn span{
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="btn"><span>Button</span></a>
+
+    <script>
+        const btnE1=document.querySelector(".btn");
+
+        btnE1.addEventListener("mouseover",(event)=>{
+            const x= event.pageX-btnE1.offsetLeft;
+            const y= event.pageY-btnE1.offsetTop;
+
+            btnE1.style.setProperty("--xPos",x+"px");
+            btnE1.style.setProperty("--yPos",y+"px");
+        });
+    </script>
+</body>
+</html>
